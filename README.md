@@ -118,11 +118,13 @@ Note: Update `ROSBRIDGE_SERVER_IP` with the IP address of your ROSBridge server,
    ```sh
    roslaunch turtlebot3_gazebo turtlebot3_house.launch
    ```
+<img width="1345" alt="Screenshot 2024-07-27 at 5 21 30 PM" src="https://github.com/user-attachments/assets/7ff92a8c-e341-4b35-964b-fd34cf761f2a">
 
    **Terminal 2**:
    ```sh
    roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/path/to/catkin-ws/src/tb3map/tb3_house_map.yaml
    ```
+<img width="1352" alt="Screenshot 2024-07-27 at 5 21 45 PM" src="https://github.com/user-attachments/assets/3e03ebb0-0ce9-43df-888b-6b9c4ef6b05b">
 
    **Terminal 3**:
    ```sh
@@ -139,6 +141,11 @@ Note: Update `ROSBRIDGE_SERVER_IP` with the IP address of your ROSBridge server,
 - Use the web-based joystick to teleoperate the robot.
 - Monitor live data about the robot's status.
 - Set goal locations on the navigation map for the robot to follow.
+
+<img width="966" alt="Screenshot 2024-07-27 at 5 20 20 PM" src="https://github.com/user-attachments/assets/ae3349f7-d7db-4dbf-9743-f13186eee95c">
+
+<img width="1440" alt="Screenshot 2024-07-27 at 8 53 53 AM" src="https://github.com/user-attachments/assets/9bef805e-69da-4f8e-9633-2c6f4047f1a2">
+
 
 ## Conclusion
 This project provides a comprehensive web interface for teleoperating and monitoring a Turtlebot3 robot using ROS and ReactJS. The system is designed to be user-friendly and efficient, enabling seamless interaction with the robot.
