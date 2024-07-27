@@ -1,28 +1,54 @@
-# ROS-Teleoperation-Web-Interface
+Sure, here's the complete README with the drive link included:
 
-This repository contains a React-based web application for teleoperating and monitoring a robot using the Robot Operating System (ROS). The web interface allows you to control the robot, visualize the navigation map, and monitor its position, orientation, and velocity. This project is built with ReactJS, a popular JavaScript framework for front-end development.
-
-[![Course](https://img.shields.io/badge/Udemy-Course-blue)](https://www.udemy.com/ros-web-nav/)
-[![Discount](https://img.shields.io/badge/Discount-Coupons-green)](https://www.riotu-lab.org/udemy.php)
-
-## Udemy Course
-
-Learn more about this project and the concepts behind it by enrolling in our Udemy course: [ROS Web Navigation](https://www.udemy.com/course/ros-web-nav/).
-
-## Discount Coupons
-
-For occasional time, you can get discount coupons for this course on our website: [RIOTU Lab](https://www.riotu-lab.org/udemy.php).
-
-## Video Overview
-
-Watch video overview on YouTube to help you get started with the project and understand the project scope:
-
-[![ROS for Beginners III: Web-based Navigation with ROSBridge](http://img.youtube.com/vi/cmQ-a8-0TeQ/0.jpg)](http://www.youtube.com/watch?v=cmQ-a8-0TeQ "ROS for Beginners III: Web-based Navigation with ROSBridge")
+# Turtlebot3 Web-based Navigation System
 
 ## Project Overview
+In this project, I developed a web interface to teleoperate and monitor a Turtlebot3 robot using ROS (Robot Operating System). The web interface, built with ReactJS, enables users to control the robot remotely and view real-time data about the robot's status.
 
-The web interface is composed of the following components:
+## Key Features
+- **Connection Status**: Displays whether the robot is connected or not.
+- **Teleoperation**: Provides a web-based joystick for controlling the robot and an emergency stop button.
+- **Live Robot Information**: Shows the robot's position, orientation, and linear/angular velocity.
+- **Map-based Navigation**: Displays a navigation map where users can set goal locations for the robot to navigate to.
 
+## Technologies Used
+- **Ubuntu 20.04**
+- **ROS Noetic**
+- **ReactJS**
+- **ROSBridge**
+
+## File Structure
+```
+react-ros-robot/
+│
+├── node_modules/
+├── public/
+├── src/
+│   ├── App.js
+│   ├── bootstrap/
+│   │   ├── lux-bootstrap.min.css
+│   │   ├── sketchy-bootstrap.min.css
+│   │   └── spacelab-bootstrap.min.css
+│   ├── components/
+│   │   ├── About.jsx
+│   │   ├── Body.jsx
+│   │   ├── Connection.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Header.jsx
+│   │   ├── Home.jsx
+│   │   ├── Map.jsx
+│   │   ├── RobotState.jsx
+│   │   └── Teleoperation.jsx
+│   ├── scripts/
+│   │   └── config.js
+│   ├── index.css
+│   ├── index.js
+│   ├── reportWebVitals.js
+│   └── setupTests.js
+├── package.json
+```
+
+### Component Descriptions
 - **About.jsx**: Contains information about the project and its purpose.
 - **Body.jsx**: The main body of the web application.
 - **Connection.jsx**: Displays the connection status of the robot.
@@ -33,49 +59,88 @@ The web interface is composed of the following components:
 - **RobotState.jsx**: Displays live information about the robot's position, orientation, and linear/angular velocity.
 - **Teleoperation.jsx**: Provides teleoperation controls, including a web-based joystick and an emergency stop button.
 
-## Getting Started
+### Config.js
+```javascript
+const Config = {
+  ROSBRIDGE_SERVER_IP: "192.168.8.101",
+  ROSBRIDGE_SERVER_PORT: "9090",
+  RECONNECTION_TIMER: 3000,
+  CMD_VEL_TOPIC: "/cmd_vel",
+  ODOM_TOPIC: "/odom",
+  POSE_TOPIC: "/robot_pose",
+};
 
-These instructions will help you set up the project on your local machine for development and testing purposes.
-
-### Prerequisites
-
-Before you begin, make sure you have the following software installed on your machine:
-
-- Node.js (v14.x or later)
-- npm (v7.x or later)
-- ROS (Robot Operating System)
-- ROSBridge Package
-
-The course provides complete details on the environment setup process.
-
-### Installing Dependencies
-
-To install the required dependencies, navigate to the project directory and run the following command:
-
-```bash
-npm install
+export default Config;
 ```
 
-This command will install all the necessary packages from the package.json file.
+Note: Update `ROSBRIDGE_SERVER_IP` with the IP address of your ROSBridge server, which can be found using `ifconfig`.
+
+## Setup Instructions
+
+### Prerequisites
+- **Ubuntu 20.04**
+- **ROS Noetic**
+- **Node.js and npm**
+
+### Installation
+
+1. **Download Catkin Workspace**: 
+   Download my catkin_ws workspace from [this link](https://drive.google.com/drive/folders/1-u4qolXatmV3-Idyaji1KlyhNpGl1Rss?usp=sharing) and place it in your home directory.
+   
+2. **Build Catkin Workspace**:
+   ```sh
+   cd ~/catkin-ws
+   catkin_make
+   source ~/catkin-ws/devel/setup.bash
+   ```
+
+3. **Clone React Project**:
+   ```sh
+   git clone https://github.com/your-repo/react-ros-robot.git
+   cd react-ros-robot
+   ```
+
+4. **Install Dependencies**:
+   ```sh
+   npm install
+   ```
 
 ### Running the Project
 
-To start the project, navigate to the project directory and run:
+1. **Start React Application**:
+   ```sh
+   npm start
+   ```
+   The web application will be accessible at `http://localhost:3000`.
 
-```bash
-npm start
-```
+2. **Launch ROS Nodes**:
+   Open new terminal windows and run the following commands:
 
-This command will launch the development server, and the web application will be accessible at [http://localhost:3000](http://localhost:3000) in your web browser.
+   **Terminal 1**:
+   ```sh
+   roslaunch turtlebot3_gazebo turtlebot3_house.launch
+   ```
 
-## Contributing
+   **Terminal 2**:
+   ```sh
+   roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/path/to/catkin-ws/src/tb3map/tb3_house_map.yaml
+   ```
 
-We welcome contributions to this project. Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for more information on how to contribute, submit pull requests, and report issues.
+   **Terminal 3**:
+   ```sh
+   roslaunch rosbridge_server rosbridge_websocket.launch
+   ```
 
-## License
+   **Terminal 4**:
+   ```sh
+   rosrun srm_robot_pose_publisher srm_robot_pose_publisher
+   ```
 
-This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International License**. You are free to use, share, and adapt this material for non-commercial purposes, as long as you provide attribution to the original author(s) and the source.
+### Usage
+- Open your web browser and navigate to `http://localhost:3000`.
+- Use the web-based joystick to teleoperate the robot.
+- Monitor live data about the robot's status.
+- Set goal locations on the navigation map for the robot to follow.
 
-## Acknowledgments
-
-We would like to thank all the contributors and the ROS community for their support and resources that made this project possible.
+## Conclusion
+This project provides a comprehensive web interface for teleoperating and monitoring a Turtlebot3 robot using ROS and ReactJS. The system is designed to be user-friendly and efficient, enabling seamless interaction with the robot.
