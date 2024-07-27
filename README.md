@@ -94,7 +94,7 @@ Note: Update `ROSBRIDGE_SERVER_IP` with the IP address of your ROSBridge server,
 
 3. **Clone React Project**:
    ```sh
-   git clone https://github.com/your-repo/react-ros-robot.git
+   git clone https://github.com/Sourav9348/react-ros-robot.git
    cd react-ros-robot
    ```
 
