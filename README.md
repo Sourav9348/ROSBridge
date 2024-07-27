@@ -1,5 +1,3 @@
-Sure, here's the complete README with the drive link included:
-
 # Turtlebot3 Web-based Navigation System
 
 ## Project Overview
