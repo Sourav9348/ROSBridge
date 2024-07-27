@@ -144,8 +144,6 @@ Note: Update `ROSBRIDGE_SERVER_IP` with the IP address of your ROSBridge server,
 
 <img width="966" alt="Screenshot 2024-07-27 at 5 20 20 PM" src="https://github.com/user-attachments/assets/ae3349f7-d7db-4dbf-9743-f13186eee95c">
 
-<img width="1440" alt="Screenshot 2024-07-27 at 8 53 53 AM" src="https://github.com/user-attachments/assets/9bef805e-69da-4f8e-9633-2c6f4047f1a2">
-
 
 ## Conclusion
 This project provides a comprehensive web interface for teleoperating and monitoring a Turtlebot3 robot using ROS and ReactJS. The system is designed to be user-friendly and efficient, enabling seamless interaction with the robot.
